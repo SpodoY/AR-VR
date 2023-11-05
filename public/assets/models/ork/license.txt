@@ -1,0 +1,11 @@
+Model Information:
+* title:	Micro Orc Gronk
+* source:	https://sketchfab.com/3d-models/micro-orc-gronk-1eb55b941f9d457aab399bc3c57c2ed7
+* author:	BitGem (https://sketchfab.com/bitgem)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Micro Orc Gronk" (https://sketchfab.com/3d-models/micro-orc-gronk-1eb55b941f9d457aab399bc3c57c2ed7) by BitGem (https://sketchfab.com/bitgem) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
