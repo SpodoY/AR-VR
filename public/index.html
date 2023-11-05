@@ -67,8 +67,8 @@
                     position="0 0.6 -0.85"
                     scale="1.2 1.2 1.2"
                     > 
-                    <a-entity text="color: black; value: SCORE: ;"> </a-entity>
-                    <a-entity position="0.17 0 0" bind="text.value: score" text="color: black;"> </a-entity>
+                    <a-entity text="color: #fff; value: SCORE: ;"> </a-entity>
+                    <a-entity position="0.17 0 0" bind="text.value: score" text="color: #fff;"> </a-entity>
                 </a-entity>
 
                 <!--  The ring or better call cursor therefore all thsi config  -->
@@ -98,6 +98,12 @@
             <!-- The orks -->
             <a-entity position="0 0.6 0.83815" id="orks"></a-entity>
             <a-sky color="#000"></a-sky>
+
+            <a-entity 
+                id="music"
+                position="0 0 0"
+                sound="src: url(./assets/sounds/around_the_fire.mp3); autplay: true, loop: true"
+            ></a-entity>
         </a-scene>
     </body>
 
