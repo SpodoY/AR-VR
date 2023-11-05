@@ -18,16 +18,14 @@
             <a-assets>
 
                 <!-- here we asign it an Id we want to call it by and where to find it -->
-                <a-assets-item id ="hammer-model" src="/assets/models/hammer/scene.gltf">
-                </a-assets-item>
-
-                <a-assets-item id ="ork-model" src="/assets/models/ork/scene.gltf">
-                </a-assets-item>
+                <a-assets-item id ="hammer-model" src="/assets/models/good_ol_bonk/bonk.gltf" />
+                <a-assets-item id ="ork-model" src="/assets/models/ork/scene.gltf" />
+                <a-assets-item id="table-model" src="./assets/models/table/WitchTable.gltf" />
 
                 <!-- Mixins -> a thing to male it easier to work with the model -->
-                <a-mixin id = "hammer" gltf-model="#hammer-model"></a-mixin>
-                <a-mixin ork-logic  id = "ork" gltf-model="#ork-model"></a-mixin>
-
+                <a-mixin id = "hammer" gltf-model="#hammer-model" />
+                <a-mixin ork-logic  id = "ork" gltf-model="#ork-model" />
+                <a-mixin id="table" gltf-model="#table-model" />
 
             </a-assets>
             
@@ -36,16 +34,19 @@
             <!--  look-controll makes ist to that losing the mose thing  -->
             <a-entity camera position="0 1.6 -2" look-controls="pointerLockEnabled : true" >
 
+
                 <!-- Hammer -->
                 <!-- These parmaters have to be tweaked for evry model -->
                 <a-entity hammer-logic 
                     position="0.075 -0.05 -0.165" 
-                    scale="0.0001 0.0001 0.0001"
+                    scale="0.09 0.09 0.09"
                     rotation="0 90 0"
                     mixin= "hammer"
                     animation="startEvents: hit; property: rotation; dur: 400; dir: alternate; from: 0 90 0; to: 0 90 -90; loop: 1;"
                     id="player-hammer"
                     >
+                    <a-light type="point" color="#BBB" intensity="2%" position="3 3 5"></a-light>
+                    <a-light type="point" color="#BBB" intensity="1%" position="-1 -1 -1"></a-light>
                 </a-entity>
 
 
@@ -86,62 +87,17 @@
 
 
             <!-- The table -->
-            <a-entity scale="3 1 2" position="0 0 -4" material="color:brown" geometry="primitive:box"></a-entity>
-
-
-            <!-- Holes -->
-            <a-entity position="0 0.5 -4" id="holes">
-                <a-entity 
-                    position="1 0 0.5"
-                    material = "color:black"
-                    scale="0.25 0.1 0.25"
-                    geometry="primitive:cylinder"
-                    > 
-                </a-entity>
-                <a-entity 
-                    position="0 0 0.5"
-                    material = "color:black"
-                    scale="0.25 0.1 0.25"
-                    geometry="primitive:cylinder"
-                    > 
-                </a-entity>
-                <a-entity 
-                    position="-1 0 0.5"
-                    material = "color:black"
-                    scale="0.25 0.1 0.25"
-                    geometry="primitive:cylinder"
-                    > 
-                </a-entity>
-                <a-entity 
-                    position="-1 0 -0.5"
-                    material = "color:black"
-                    scale="0.25 0.1 0.25"
-                    geometry="primitive:cylinder"
-                    > 
-                </a-entity>
-                <a-entity 
-                    position="0 0 -0.5"
-                    material = "color:black"
-                    scale="0.25 0.1 0.25"
-                    geometry="primitive:cylinder"
-                    > 
-                </a-entity>
-                <a-entity 
-                    position="1 0 -0.5"
-                    material = "color:black"
-                    scale="0.25 0.1 0.25"
-                    geometry="primitive:cylinder"
-                    > 
-                </a-entity>
-            </a-entity>
+            <a-entity
+                position="0 0.5 -4.5"
+                scale="0.5 0.5 0.5"
+                mixin="table"
+            />
+            <!-- <a-entity scale="3 1 2" position="0 0 -4" material="color:brown" geometry="primitive:box"></a-entity> -->
 
 
             <!-- The orks -->
-            <a-entity position="0 0.6 -4" id="orks">
-            </a-entity>
-
-            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-            <a-sky color="#ECECEC"></a-sky>
+            <a-entity position="0 0.6 0.83815" id="orks"></a-entity>
+            <a-sky color="#000"></a-sky>
         </a-scene>
     </body>
 

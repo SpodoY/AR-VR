@@ -53,7 +53,7 @@ AFRAME.registerComponent('ork-logic', {
 
     tick: function (time, timeDelta) {
       
-        //make time evry tick faster basic game logic
+        // make time evry tick faster basic game logic
         this.time += timeDelta
 
         //if the time is over our random time spawn

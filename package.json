@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "aframe-state-component": "^7.1.1",
+    "aframe-watcher": "^1.4.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
