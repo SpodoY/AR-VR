@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+<div>
+
+    <head>
+        <title>Whack EM</title>
+        <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+        <script src="dist/main.bundle.js" ></script>
+    </head>
+
+    <body>
+
+
+        <a-scene world>
+            
+            <!--- This is for all the models we wanna use -->
+            <a-assets>
+
+                <!-- here we asign it an Id we want to call it by and where to find it -->
+                <a-assets-item id ="hammer-model" src="/assets/models/hammer/scene.gltf">
+                </a-assets-item>
+
+                <a-assets-item id ="ork-model" src="/assets/models/ork/scene.gltf">
+                </a-assets-item>
+
+                <!-- Mixins -> a thing to male it easier to work with the model -->
+                <a-mixin id = "hammer" gltf-model="#hammer-model"></a-mixin>
+                <a-mixin ork-logic  id = "ork" gltf-model="#ork-model"></a-mixin>
+
+
+            </a-assets>
+            
+
+            <!--Camera -->
+            <!--  look-controll makes ist to that losing the mose thing  -->
+            <a-entity camera position="0 1.6 -2" look-controls="pointerLockEnabled : true" >
+
+                <!-- Hammer -->
+                <!-- These parmaters have to be tweaked for evry model -->
+                <a-entity hammer-logic 
+                    position="0.075 -0.05 -0.165" 
+                    scale="0.0001 0.0001 0.0001"
+                    rotation="0 90 0"
+                    mixin= "hammer"
+                    animation="startEvents: hit; property: rotation; dur: 400; dir: alternate; from: 0 90 0; to: 0 90 -90; loop: 1;"
+                    id="player-hammer"
+                    >
+                </a-entity>
+
+
+                <!-- Timer view -->
+                <a-entity scale=" 1.5 1.5 1.5 " position="1.5 0.72 -1" timer-view text="color: black;">
+                </a-entity>
+
+                <!--Win Text -->
+                <a-entity id="winning-text", scale="2 2 2" position="0.45 0.25 -1">
+                    <a-entity text="color: black; value : You Killed;" ></a-entity>
+                    <a-entity position="0.275 0 0"  bind="text.value: score" text="color: black;"></a-entity>
+                    <a-entity position="0.40 0 0" text="color: black; value : orks" ></a-entity>
+                </a-entity>
+
+
+                <!--  Score Text -->
+                <a-entity 
+                    position="0 0.6 -0.85"
+                    scale="1.2 1.2 1.2"
+                    > 
+                    <a-entity text="color: black; value: SCORE: ;"> </a-entity>
+                    <a-entity position="0.17 0 0" bind="text.value: score" text="color: black;"> </a-entity>
+                </a-entity>
+
+                <!--  The ring or better call cursor therefore all thsi config  -->
+                <a-entity   
+                    scale="0.03 0.03 0.03" 
+                    cursor="fuse: true"
+                    position="0 0 -1"
+                    geometry="primitive: ring;"
+                    material="color:black; shader: flat;"
+                    animation="startEvents: cursor-fusing; easing: linear; dur: 150; property: scale; from: 0.01 0.01 0.01; to: 0.03 0.03 0.03 "
+                    >
+                </a-entity>
+
+                <!-- animation gets triggered when the event from above cursor fuse thing happens -->
+            </a-entity>
+
+
+            <!-- The table -->
+            <a-entity scale="3 1 2" position="0 0 -4" material="color:brown" geometry="primitive:box"></a-entity>
+
+
+            <!-- Holes -->
+            <a-entity position="0 0.5 -4" id="holes">
+                <a-entity 
+                    position="1 0 0.5"
+                    material = "color:black"
+                    scale="0.25 0.1 0.25"
+                    geometry="primitive:cylinder"
+                    > 
+                </a-entity>
+                <a-entity 
+                    position="0 0 0.5"
+                    material = "color:black"
+                    scale="0.25 0.1 0.25"
+                    geometry="primitive:cylinder"
+                    > 
+                </a-entity>
+                <a-entity 
+                    position="-1 0 0.5"
+                    material = "color:black"
+                    scale="0.25 0.1 0.25"
+                    geometry="primitive:cylinder"
+                    > 
+                </a-entity>
+                <a-entity 
+                    position="-1 0 -0.5"
+                    material = "color:black"
+                    scale="0.25 0.1 0.25"
+                    geometry="primitive:cylinder"
+                    > 
+                </a-entity>
+                <a-entity 
+                    position="0 0 -0.5"
+                    material = "color:black"
+                    scale="0.25 0.1 0.25"
+                    geometry="primitive:cylinder"
+                    > 
+                </a-entity>
+                <a-entity 
+                    position="1 0 -0.5"
+                    material = "color:black"
+                    scale="0.25 0.1 0.25"
+                    geometry="primitive:cylinder"
+                    > 
+                </a-entity>
+            </a-entity>
+
+
+            <!-- The orks -->
+            <a-entity position="0 0.6 -4" id="orks">
+            </a-entity>
+
+            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+            <a-sky color="#ECECEC"></a-sky>
+        </a-scene>
+    </body>
+
+
+</div>
+
+</html>
