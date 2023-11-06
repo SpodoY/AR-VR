@@ -21,6 +21,7 @@
                 <a-assets-item id ="hammer-model" src="/assets/models/good_ol_bonk/bonk.gltf" />
                 <a-assets-item id ="ork-model" src="/assets/models/ork/scene.gltf" />
                 <a-assets-item id="table-model" src="./assets/models/table/WitchTable.gltf" />
+                <a-assets-item id="background" src="./assets/images/building-7762708.jpg"></a-assets-item>
 
                 <!-- Mixins -> a thing to male it easier to work with the model -->
                 <a-mixin id = "hammer" gltf-model="#hammer-model" />
@@ -29,6 +30,8 @@
 
             </a-assets>
             
+            <!-- Tavern Background -->
+            <a-sky src="#background" color="#444"></a-sky>
 
             <!--Camera -->
             <!--  look-controll makes ist to that losing the mose thing  -->
@@ -51,14 +54,14 @@
 
 
                 <!-- Timer view -->
-                <a-entity scale=" 1.5 1.5 1.5 " position="1.5 0.72 -1" timer-view text="color: black;">
+                <a-entity scale=" 1.5 1.5 1.5 " position="1.5 0.72 -1" timer-view text="color: #fff;">
                 </a-entity>
 
                 <!--Win Text -->
                 <a-entity id="winning-text", scale="2 2 2" position="0.45 0.25 -1">
-                    <a-entity text="color: black; value : You Killed;" ></a-entity>
-                    <a-entity position="0.275 0 0"  bind="text.value: score" text="color: black;"></a-entity>
-                    <a-entity position="0.40 0 0" text="color: black; value : orks" ></a-entity>
+                    <a-entity text="color: #fff; value: You Killed;" ></a-entity>
+                    <a-entity position="0.275 0 0"  bind="text.value: score" text="color: #fff;"></a-entity>
+                    <a-entity position="0.40 0 0" text="color: #fff; value : orks" ></a-entity>
                 </a-entity>
 
 
@@ -84,6 +87,7 @@
 
                 <!-- animation gets triggered when the event from above cursor fuse thing happens -->
             </a-entity>
+            
 
 
             <!-- The table -->
@@ -97,12 +101,11 @@
 
             <!-- The orks -->
             <a-entity position="0 0.6 0.83815" id="orks"></a-entity>
-            <a-sky color="#000"></a-sky>
 
             <a-entity 
                 id="music"
                 position="0 0 0"
-                sound="src: url(./assets/sounds/around_the_fire.mp3); autplay: true, loop: true"
+                sound="src: url(./assets/sounds/around_the_fire.mp3); autoplay: true, loop: true"
             ></a-entity>
         </a-scene>
     </body>
