@@ -1,4 +1,5 @@
 import { create_ork } from "../orks";
+import { create_chest } from "../chests";
 import { holePositions } from "../holes";
 
 AFRAME.registerComponent('world', {
@@ -24,24 +25,30 @@ AFRAME.registerComponent('world', {
         this.el.setAttribute("world", "timer_omgoing", true)
 
         this.el.addEventListener("mousedown", this.reset_game.bind(this) )
-    
-        this.spawn_orks()
+
+        this.spawn_orks() //HERE
 
     },
 
     spawn_orks : function () {
         
         //gets over Entity of the orks 
-        var orks = document.getElementById('orks')
+       // var orks = document.getElementById('orks')
+        var orks = document.getElementById('chests')
+
+        //GOES IN ONCE
 
         // spawns the orks
         holePositions.map(function(pos){
-            var ork = create_ork(pos)
+            //var ork = create_ork(pos)
+            var ork = create_chest(pos) //6
+            console.log("XX" + ork); //6 --> make 4 for orks, 1 for mage, 1 for chest
             orks.appendChild(ork)
         })
 
         let hammer = document.getElementById("player-hammer")
-        hammer.emit("orks_spawned")
+        //hammer.emit("orks_spawned")
+        hammer.emit("chests_spawned")
 
     }.bind(this),
 
@@ -67,7 +74,8 @@ AFRAME.registerComponent('world', {
       }
 
 
-      var orks = document.querySelectorAll('.ork')
+     // var orks = document.querySelectorAll('.ork')
+        var orks = document.querySelectorAll('.chest')
 
       if(orks.length <= 0 && timer_ongoing){
         this.time += timeDelta;
@@ -88,8 +96,11 @@ AFRAME.registerComponent('world', {
     },
 
     kill_orks : function ( ) {
-        var ork_container = document.getElementById("orks")
-        var orks = document.querySelectorAll('.ork')
+        //var ork_container = document.getElementById("orks")
+        //var orks = document.querySelectorAll('.ork')
+
+        var ork_container = document.getElementById("chests")
+        var orks = document.querySelectorAll('.chest')
 
         orks.forEach(function (ork) {
             ork_container.removeChild(ork)

@@ -3,6 +3,7 @@ require('aframe-state-component');
 require("./state")
 
 require("./components/ork-logic")
+require("./components/chest-logic")
 
 require("./components/world")
 
