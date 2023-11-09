@@ -54,24 +54,23 @@
 
 
                 <!-- Timer view -->
-                <a-entity scale=" 1.5 1.5 1.5 " position="1.5 0.72 -1" timer-view text="color: #fff;">
+                <a-entity scale=" 1.5 1.5 1.5 " position="1.4 0.72 -1.02" timer-view text="color: #fff;  shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;">
                 </a-entity>
 
                 <!--Win Text -->
-                <a-entity id="winning-text", scale="2 2 2" position="0.45 0.25 -1">
-                    <a-entity text="color: #fff; value: You Killed;" ></a-entity>
-                    <a-entity position="0.275 0 0"  bind="text.value: score" text="color: #fff;"></a-entity>
-                    <a-entity position="0.40 0 0" text="color: #fff; value : orks" ></a-entity>
+                <a-entity id="winning-text", scale="2 2 2" position="0.45 -0.7 -1">
+                    <a-entity text="color: #ff0000; value: You Killed;  shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;" ></a-entity>
+                    <a-entity position="0.275 0 0"  bind="text.value: score" text="color: #fff;  shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;"></a-entity>
+                    <a-entity position="0.35 0 0" text="color: #fff; value : orks; shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;" ></a-entity> <!-- probably change this because of mage and chest -->
                 </a-entity>
 
 
                 <!--  Score Text -->
                 <a-entity 
-                    position="0 0.6 -0.85"
-                    scale="1.2 1.2 1.2"
-                    > 
-                    <a-entity text="color: #fff; value: SCORE: ;"> </a-entity>
-                    <a-entity position="0.17 0 0" bind="text.value: score" text="color: #fff;"> </a-entity>
+                    position="-0.2 0.6 -0.85"
+                    scale="1.2 1.2 1.2">
+                    <a-entity text="color: #fff; value: SCORE: ;  shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;"> </a-entity>
+                    <a-entity position="0.17 0 0" bind="text.value: score" text="color: #fff;  shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;"> </a-entity>
                 </a-entity>
 
                 <!--  The ring or better call cursor therefore all thsi config  -->
