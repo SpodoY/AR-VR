@@ -27,24 +27,27 @@ AFRAME.registerComponent('world', {
 
         this.el.addEventListener("mousedown", this.reset_game.bind(this) )
 
-        this.spawn_orks()
-        this.spawn_chests()
-        this.spawn_mages()
+
+
+
+        const result = this.generateRandomPosition(6);
+
+        this.spawn_orks(result[2], result[3],result[4],result[5])
+        this.spawn_chests(result[0])
+        this.spawn_mages(result[1])
         this.hide_chestpopup()
         this.hide_magepopup()
 
     },
 
-    spawn_orks : function () {
+    spawn_orks : function (number1, number2, number3, number4) {
 
-        //gets over Entity of the orks
-        // var orks = document.getElementById('orks')
         var orks = document.getElementById('orks')
 
 
         // spawns the orks
         holePositions.forEach(function(pos, index){
-            if (index % 6 >= 2 ) {
+            if (index === number1 || index % 6 === number2 || index % 6 === number3|| index % 6 === number4) {
                 var ork = create_ork(pos) //6
                 orks.appendChild(ork)
             }
@@ -56,12 +59,12 @@ AFRAME.registerComponent('world', {
 
     }.bind(this),
 
-    spawn_chests : function () {
+    spawn_chests : function (number1) {
 
         var chests = document.getElementById('chests')
 
         holePositions.forEach(function(pos, index){
-            if (index % 6 === 0) {
+            if (index === number1) {
                 var chest = create_chest(pos);
                 chests.appendChild(chest);
             }
@@ -73,12 +76,12 @@ AFRAME.registerComponent('world', {
 
     }.bind(this),
 
-    spawn_mages : function () {
+    spawn_mages : function (number1) {
 
         var mages = document.getElementById('mages')
 
         holePositions.forEach(function(pos, index){
-            if (index % 6 === 1) {
+            if (index === number1) {
                 var mage = create_mage(pos);
                 mages.appendChild(mage);
             }
@@ -89,6 +92,20 @@ AFRAME.registerComponent('world', {
         hammer.emit("mages_spawned")
 
     }.bind(this),
+
+    generateRandomPosition : function (length) {
+    const result = [];
+    for (let i = 0; i < length; i++) {
+        result.push(i);
+    }
+
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+
+    return result
+}.bind(this),
 
     update: function () {
         // Do something when component's data is updated.
@@ -122,7 +139,10 @@ AFRAME.registerComponent('world', {
 
             //here will the new spanning after all 6 were hit start
             if(this.time >= 1000){
-                this.spawn_orks()
+                const result = this.generateRandomPosition(6);
+                this.spawn_orks(result[2], result[3],result[4],result[5])
+                this.spawn_chests(result[0])
+                this.spawn_mages(result[1])
             }
         }
 
