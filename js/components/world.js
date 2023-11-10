@@ -27,6 +27,8 @@ AFRAME.registerComponent('world', {
         this.el.addEventListener("mousedown", this.reset_game.bind(this) )
 
         this.spawn_orks() //HERE
+        this.spawn_chests()
+        this.hide_chestpopup()
 
     },
 
@@ -34,20 +36,36 @@ AFRAME.registerComponent('world', {
         
         //gets over Entity of the orks 
        // var orks = document.getElementById('orks')
-        var orks = document.getElementById('chests')
+        var orks = document.getElementById('orks')
 
-        //GOES IN ONCE
 
         // spawns the orks
-        holePositions.map(function(pos){
-            //var ork = create_ork(pos)
-            var ork = create_chest(pos) //6
-            console.log("XX" + ork); //6 --> make 4 for orks, 1 for mage, 1 for chest
-            orks.appendChild(ork)
+        holePositions.forEach(function(pos, index){
+                if (index % 2 !== 1) {
+                    var ork = create_ork(pos) //6
+                    orks.appendChild(ork)
+                }
         })
 
         let hammer = document.getElementById("player-hammer")
         //hammer.emit("orks_spawned")
+        hammer.emit("orks_spawned")
+
+    }.bind(this),
+
+    spawn_chests : function () {
+
+        var chests = document.getElementById('chests')
+
+        holePositions.forEach(function(pos, index){
+            if (index % 2 !== 0) { // Check if the index is odd
+                var chest = create_chest(pos);
+                chests.appendChild(chest);
+            }
+        });
+
+
+        let hammer = document.getElementById("player-hammer")
         hammer.emit("chests_spawned")
 
     }.bind(this),
@@ -75,7 +93,8 @@ AFRAME.registerComponent('world', {
 
 
      // var orks = document.querySelectorAll('.ork')
-        var orks = document.querySelectorAll('.chest')
+        var orks = document.querySelectorAll('.ork')
+        var chests = document.querySelectorAll('.chest') //!!!!!!!!!!!!!
 
       if(orks.length <= 0 && timer_ongoing){
         this.time += timeDelta;
@@ -99,8 +118,15 @@ AFRAME.registerComponent('world', {
         //var ork_container = document.getElementById("orks")
         //var orks = document.querySelectorAll('.ork')
 
-        var ork_container = document.getElementById("chests")
-        var orks = document.querySelectorAll('.chest')
+        var chest_container = document.getElementById("chests")
+        var chests = document.querySelectorAll('.chest')
+
+        chests.forEach(function (chest) {
+            chest_container.removeChild(chest)
+        })
+
+        var ork_container = document.getElementById("orks")
+        var orks = document.querySelectorAll('.ork')
 
         orks.forEach(function (ork) {
             ork_container.removeChild(ork)
@@ -119,8 +145,27 @@ AFRAME.registerComponent('world', {
 
     }.bind(this),
 
+    show_chestpopup : function ( ) {
+        let wintetx = document.getElementById("chest-text")
+        let visible = wintetx.getAttribute("visible")
+
+        if(!visible) {
+            wintetx.setAttribute("visible", true)
+        }
+
+    }.bind(this),
+
     hide_wintext : function ( ) {
         let wintetx = document.getElementById("winning-text")
+        let visible = wintetx.getAttribute("visible")
+
+        if(visible) {
+            wintetx.setAttribute("visible", false)
+        }
+    }.bind(this),
+
+    hide_chestpopup: function ( ) {
+        let wintetx = document.getElementById("chest-text")
         let visible = wintetx.getAttribute("visible")
 
         if(visible) {

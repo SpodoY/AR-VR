@@ -22,7 +22,8 @@ AFRAME.registerComponent('chest-logic', {
             if(this.can_die === true){
                 chests.removeChild(this.el)
 
-                AFRAME.scenes[0].emit('increaseScore', {points : 1})
+                //AFRAME.scenes[0].emit('increaseScore', {points : 1}) //instead logic for SPECIAL EFFECTS --> HERE TEXT IF WE WANT CHEST SCORE SMTH
+               this.show_chestpopup(); // -> ACTION
             }
 
             let hammer = document.getElementById('player-hammer')
@@ -30,7 +31,8 @@ AFRAME.registerComponent('chest-logic', {
 
         }.bind(this)
 
-        this.el.addEventListener( "mousedown", hammerhit)
+
+            this.el.addEventListener( "mousedown", hammerhit)
         this.el.addEventListener( "click", hammerhit)
 
         this.el.addEventListener( "candie", function () {
@@ -50,6 +52,16 @@ AFRAME.registerComponent('chest-logic', {
     remove: function () {
         // Do something the component or its entity is detached.
     },
+
+    show_chestpopup : function ( ) {
+        let wintetx = document.getElementById("chest-text")
+        let visible = wintetx.getAttribute("visible")
+
+        if(!visible) {
+            wintetx.setAttribute("visible", true)
+        }
+
+    }.bind(this),
 
     tick: function (time, timeDelta) {
 
