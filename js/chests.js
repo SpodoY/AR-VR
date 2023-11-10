@@ -1,7 +1,6 @@
 
 export const create_chest = function (positiom) {
 
-    console.log("ZZ" + positiom);
 
     const chestScale = "0.0075 " //scale for case and chest
     // const orcScale = "0.8 " for mage -> issues when clicking (actually you have to hit arm)

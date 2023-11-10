@@ -1,5 +1,6 @@
 import { create_ork } from "../orks";
 import { create_chest } from "../chests";
+import { create_mage } from "../mages";
 import { holePositions } from "../holes";
 
 AFRAME.registerComponent('world', {
@@ -17,7 +18,7 @@ AFRAME.registerComponent('world', {
     init: function () {
         this.time = 0
 
-        //here gets defined how log the game goes 
+        //here gets defined how log the game goes
         // 30 seconds are 30 * 1000 ms
         this.el.setAttribute("world", "gametime" ,30.0 * 1000)
 
@@ -26,25 +27,27 @@ AFRAME.registerComponent('world', {
 
         this.el.addEventListener("mousedown", this.reset_game.bind(this) )
 
-        this.spawn_orks() //HERE
+        this.spawn_orks()
         this.spawn_chests()
+        this.spawn_mages()
         this.hide_chestpopup()
+        this.hide_magepopup()
 
     },
 
     spawn_orks : function () {
-        
-        //gets over Entity of the orks 
-       // var orks = document.getElementById('orks')
+
+        //gets over Entity of the orks
+        // var orks = document.getElementById('orks')
         var orks = document.getElementById('orks')
 
 
         // spawns the orks
         holePositions.forEach(function(pos, index){
-                if (index % 2 !== 1) {
-                    var ork = create_ork(pos) //6
-                    orks.appendChild(ork)
-                }
+            if (index % 6 >= 2 ) {
+                var ork = create_ork(pos) //6
+                orks.appendChild(ork)
+            }
         })
 
         let hammer = document.getElementById("player-hammer")
@@ -58,7 +61,7 @@ AFRAME.registerComponent('world', {
         var chests = document.getElementById('chests')
 
         holePositions.forEach(function(pos, index){
-            if (index % 2 !== 0) { // Check if the index is odd
+            if (index % 6 === 0) {
                 var chest = create_chest(pos);
                 chests.appendChild(chest);
             }
@@ -70,47 +73,65 @@ AFRAME.registerComponent('world', {
 
     }.bind(this),
 
+    spawn_mages : function () {
+
+        var mages = document.getElementById('mages')
+
+        holePositions.forEach(function(pos, index){
+            if (index % 6 === 1) {
+                var mage = create_mage(pos);
+                mages.appendChild(mage);
+            }
+        });
+
+
+        let hammer = document.getElementById("player-hammer")
+        hammer.emit("mages_spawned")
+
+    }.bind(this),
+
     update: function () {
-      // Do something when component's data is updated.
+        // Do something when component's data is updated.
     },
 
     remove: function () {
-      // Do something the component or its entity is detached.
+        // Do something the component or its entity is detached.
     },
 
     tick: function (time, timeDelta) {
 
-      let {gametime, timer_ongoing }=  this.el.getAttribute("world") 
-      let update_gametime = gametime - timeDelta
-      
-      if(timer_ongoing){
-          if(Math.ceil(update_gametime / 1000 >= 0)){
-              this.el.setAttribute("world", "gametime", update_gametime)
-          }else{
-              this.el.setAttribute("world", "timer_ongoing" ,false)
-          }
-      }
+        let {gametime, timer_ongoing }=  this.el.getAttribute("world")
+        let update_gametime = gametime - timeDelta
+
+        if(timer_ongoing){
+            if(Math.ceil(update_gametime / 1000 >= 0)){
+                this.el.setAttribute("world", "gametime", update_gametime)
+            }else{
+                this.el.setAttribute("world", "timer_ongoing" ,false)
+            }
+        }
 
 
-     // var orks = document.querySelectorAll('.ork')
+        // var orks = document.querySelectorAll('.ork')
         var orks = document.querySelectorAll('.ork')
         var chests = document.querySelectorAll('.chest') //!!!!!!!!!!!!!
+        var mages = document.querySelectorAll('.mage') //!!!!!!!!!!!!!
 
-      if(orks.length <= 0 && timer_ongoing){
-        this.time += timeDelta;
+        if(orks.length <= 0 && timer_ongoing){
+            this.time += timeDelta;
 
-        //here will the new spanning after all 6 were hit start
-        if(this.time >= 1000){
-            this.spawn_orks()
+            //here will the new spanning after all 6 were hit start
+            if(this.time >= 1000){
+                this.spawn_orks()
+            }
         }
-      }
 
-     if( timer_ongoing === false){
-        this.kill_orks()
-        this.show_wintext()
-     }else{
-        this.hide_wintext()
-     }
+        if( timer_ongoing === false){
+            this.kill_orks()
+            this.show_wintext()
+        }else{
+            this.hide_wintext()
+        }
 
     },
 
@@ -130,6 +151,13 @@ AFRAME.registerComponent('world', {
 
         orks.forEach(function (ork) {
             ork_container.removeChild(ork)
+        })
+
+        var mage_container = document.getElementById("mages")
+        var mages = document.querySelectorAll('.mage')
+
+        mages.forEach(function (mage) {
+            mage_container.removeChild(mage)
         })
 
 
@@ -173,8 +201,17 @@ AFRAME.registerComponent('world', {
         }
     }.bind(this),
 
+    hide_magepopup: function ( ) {
+        let wintetx = document.getElementById("mage-text")
+        let visible = wintetx.getAttribute("visible")
+
+        if(visible) {
+            wintetx.setAttribute("visible", false)
+        }
+    }.bind(this),
+
     reset_game : function () {
-        let { timer_ongoing }=  this.el.getAttribute("world") 
+        let { timer_ongoing }=  this.el.getAttribute("world")
         if(timer_ongoing === false){
             this.kill_orks()
             AFRAME.scenes[0].emit("resetScore", {})

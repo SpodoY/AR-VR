@@ -4,6 +4,7 @@ require("./state")
 
 require("./components/ork-logic")
 require("./components/chest-logic")
+require("./components/mage-logic")
 
 require("./components/world")
 
