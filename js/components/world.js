@@ -149,6 +149,27 @@ AFRAME.registerComponent('world', {
         var mages = document.querySelectorAll('.mage') //!!!!!!!!!!!!!
 
         if(orks.length <= 0 && timer_ongoing){
+
+            //kill not hitted objects
+            if(chests.length>=0)
+            {
+                var chest_container = document.getElementById("chests")
+                var chestskill = document.querySelectorAll('.chest')
+
+                chestskill.forEach(function (chest) {
+                    chest_container.removeChild(chest)
+                })
+            }
+            if(mages.length>=0)
+            {
+                var mage_container = document.getElementById("mages")
+                var mageskill = document.querySelectorAll('.mage')
+
+                mageskill.forEach(function (mage) {
+                    mage_container.removeChild(mage)
+                })
+            }
+
             this.time += timeDelta;
 
             //here will the new spanning after all 6 were hit start
