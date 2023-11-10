@@ -17,15 +17,24 @@ AFRAME.registerComponent('world', {
 
     init: function () {
         this.time = 0
+        var worldComponent = this; // Store a reference to the world component
+        this.chestCollectedFlag = false; // Flag to check if the chest has been collected
 
         //here gets defined how log the game goes
         // 30 seconds are 30 * 1000 ms
         this.el.setAttribute("world", "gametime" ,30.0 * 1000)
 
         //Sart the timer
-        this.el.setAttribute("world", "timer_omgoing", true)
+        this.el.setAttribute("world", "timer_ongoing", true)
 
-        this.el.addEventListener("mousedown", this.reset_game.bind(this) )
+        this.el.addEventListener("mousedown", this.reset_game.bind(this))
+
+        this.el.addEventListener("chestCollected", function () {
+                worldComponent.chestCollectedFlag = true;
+                //var storedTimeDelta = this.currentTimedelta || 0;
+                //console.log("Timedelta:", storedTimeDelta);
+                //worldEl.setAttribute("world", "gametime", storedTimeDelta);
+        });
 
 
 
@@ -123,6 +132,11 @@ AFRAME.registerComponent('world', {
         if(timer_ongoing){
             if(Math.ceil(update_gametime / 1000 >= 0)){
                 this.el.setAttribute("world", "gametime", update_gametime)
+                if (this.chestCollectedFlag) {
+
+                    this.el.setAttribute("world", "gametime", update_gametime +5.0 * 1000 ) //CHEST BOOST
+                    this.chestCollectedFlag = false;
+                }
             }else{
                 this.el.setAttribute("world", "timer_ongoing" ,false)
             }
@@ -182,6 +196,7 @@ AFRAME.registerComponent('world', {
 
 
     }.bind(this),
+
 
     show_wintext : function ( ) {
         let wintetx = document.getElementById("winning-text")

@@ -24,6 +24,7 @@ AFRAME.registerComponent('chest-logic', {
 
                 //AFRAME.scenes[0].emit('increaseScore', {points : 1}) //instead logic for SPECIAL EFFECTS --> HERE TEXT IF WE WANT CHEST SCORE SMTH
                this.show_chestpopup(); // -> ACTION
+               this.el.sceneEl.emit('chestCollected'); // Emit a custom event
             }
 
             let hammer = document.getElementById('player-hammer')
