@@ -24,6 +24,9 @@ AFRAME.registerComponent('mage-logic', {
 
                 AFRAME.scenes[0].emit('decreaseScore', {points : 1})
                 this.show_magepopup(); // -> ACTION BAD
+                setTimeout(() => {
+                    this.hide_magepopup();
+                }, 1500);
             }
 
             let hammer = document.getElementById('player-hammer')
@@ -61,6 +64,15 @@ AFRAME.registerComponent('mage-logic', {
             wintetx.setAttribute("visible", true)
         }
 
+    }.bind(this),
+
+    hide_magepopup: function ( ) {
+        let wintetx = document.getElementById("mage-text")
+        let visible = wintetx.getAttribute("visible")
+
+        if(visible) {
+            wintetx.setAttribute("visible", false)
+        }
     }.bind(this),
 
     tick: function (time, timeDelta) {

@@ -25,6 +25,9 @@ AFRAME.registerComponent('chest-logic', {
                 //AFRAME.scenes[0].emit('increaseScore', {points : 1}) //instead logic for SPECIAL EFFECTS --> HERE TEXT IF WE WANT CHEST SCORE SMTH
                this.show_chestpopup(); // -> ACTION
                this.el.sceneEl.emit('chestCollected'); // Emit a custom event
+                setTimeout(() => {
+                    this.hide_chestpopup();
+                }, 1500);
             }
 
             let hammer = document.getElementById('player-hammer')
@@ -62,6 +65,15 @@ AFRAME.registerComponent('chest-logic', {
             wintetx.setAttribute("visible", true)
         }
 
+    }.bind(this),
+
+    hide_chestpopup: function ( ) {
+        let wintetx = document.getElementById("chest-text")
+        let visible = wintetx.getAttribute("visible")
+
+        if(visible) {
+            wintetx.setAttribute("visible", false)
+        }
     }.bind(this),
 
     tick: function (time, timeDelta) {
