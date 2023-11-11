@@ -9,6 +9,7 @@ AFRAME.registerComponent('mage-logic', {
         this.time = 0;
         //this.randomInterval = Math.floor(Math.random() * Math.floor(300))  + 1000
         this.randomInterval = 1040;
+        this.randomInterval2 = 960;
         this.can_die = true;
 
         // Access the shared entity
@@ -96,45 +97,74 @@ AFRAME.registerComponent('mage-logic', {
         this.time += timeDelta
 
         //if the time is over our random time spawn
-        if(this.time >= this.randomInterval){
-            this.el.emit("switch")
-            var pos;
-           // console.log(this.currentPositionIndex + "MAGEEEEEE")
-            if(this.currentPositionIndex%12===0)
-            {
-                pos = createPostion(2, -0.2, 1.2)
-                this.el.setAttribute("position", pos)
-            }
-            if(this.currentPositionIndex%12===2)
-            {
-                pos = createPostion(-2.2, -0.2, 1.2)
-                this.el.setAttribute("position", pos)
-            }
-            if(this.currentPositionIndex%12===4)
-            {
-                pos =  createPostion(0, -0.2, 1.2)
-                this.el.setAttribute("position", pos)
-            }
-            if(this.currentPositionIndex%12===6)
-            {
-                pos = createPostion(2, -0.2,-1.2)
-                this.el.setAttribute("position", pos)
-            }
-            if(this.currentPositionIndex%12===8)
-            {
-                pos = createPostion(0, -0.2, -1.2)
-                this.el.setAttribute("position", pos)
-            }
-            if(this.currentPositionIndex%12===10)
-            {
-                pos =  createPostion(-2.2, -0.2, -1.2)
-                this.el.setAttribute("position", pos)
-            }
+        if(this.currentPositionIndex%2===0) {
+            if (this.time >= Math.floor(Math.random() * (1200 - 800 + 1)) + 800) {
+                this.el.emit("switch")
+                var pos;
+                // console.log(this.currentPositionIndex + "MAGEEEEEE")
+                if (this.currentPositionIndex % 12 === 0) {
+                    pos = createPostion(2, -0.2, 1.2)
+                    this.el.setAttribute("position", pos)
+                }
+                if (this.currentPositionIndex % 12 === 2) {
+                    pos = createPostion(-2.2, -0.2, 1.2)
+                    this.el.setAttribute("position", pos)
+                }
+                if (this.currentPositionIndex % 12 === 4) {
+                    pos = createPostion(0, -0.2, 1.2)
+                    this.el.setAttribute("position", pos)
+                }
+                if (this.currentPositionIndex % 12 === 6) {
+                    pos = createPostion(2, -0.2, -1.2)
+                    this.el.setAttribute("position", pos)
+                }
+                if (this.currentPositionIndex % 12 === 8) {
+                    pos = createPostion(0, -0.2, -1.2)
+                    this.el.setAttribute("position", pos)
+                }
+                if (this.currentPositionIndex % 12 === 10) {
+                    pos = createPostion(-2.2, -0.2, -1.2)
+                    this.el.setAttribute("position", pos)
+                }
 
 
-            this.time =0
-            this.currentPositionIndex++;
+                this.time = 0
+                this.currentPositionIndex++;
+            } }else {
+                if (this.time >= Math.floor(Math.random() * (1200 - 800 + 1)) + 800) {
+                    this.el.emit("switch")
+                    var pos;
+                    // console.log(this.currentPositionIndex + "MAGEEEEEE")
+                    if (this.currentPositionIndex % 12 === 0) {
+                        pos = createPostion(2, -0.2, 1.2)
+                        this.el.setAttribute("position", pos)
+                    }
+                    if (this.currentPositionIndex % 12 === 2) {
+                        pos = createPostion(-2.2, -0.2, 1.2)
+                        this.el.setAttribute("position", pos)
+                    }
+                    if (this.currentPositionIndex % 12 === 4) {
+                        pos = createPostion(0, -0.2, 1.2)
+                        this.el.setAttribute("position", pos)
+                    }
+                    if (this.currentPositionIndex % 12 === 6) {
+                        pos = createPostion(2, -0.2, -1.2)
+                        this.el.setAttribute("position", pos)
+                    }
+                    if (this.currentPositionIndex % 12 === 8) {
+                        pos = createPostion(0, -0.2, -1.2)
+                        this.el.setAttribute("position", pos)
+                    }
+                    if (this.currentPositionIndex % 12 === 10) {
+                        pos = createPostion(-2.2, -0.2, -1.2)
+                        this.el.setAttribute("position", pos)
+                    }
+
+
+                    this.time = 0
+                    this.currentPositionIndex++;
+                }
+            }
+
         }
-
-    }
 });

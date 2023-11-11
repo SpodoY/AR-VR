@@ -80,7 +80,6 @@ AFRAME.registerComponent('world', {
         })
 
         let hammer = document.getElementById("player-hammer")
-        //hammer.emit("orks_spawned")
         hammer.emit("orks_spawned")
 
     }.bind(this),
