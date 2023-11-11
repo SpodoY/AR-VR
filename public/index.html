@@ -23,7 +23,7 @@
                 <a-assets-item id="table-model" src="./assets/models/table/WitchTable.gltf" />
                 <a-assets-item id="background" src="./assets/images/building-7762708.jpg"></a-assets-item>
                 <a-assets-item id ="chest-model" src="/assets/models/chest/scene.gltf" />
-                <a-assets-item id ="mage-model" src="/assets/models/mage/scene.gltf" />
+                <a-assets-item id ="mage-model" src="/assets/models/mage3/scene.gltf" />
 
                 <!-- Mixins -> a thing to male it easier to work with the model -->
                 <a-mixin id = "hammer" gltf-model="#hammer-model" />
@@ -118,16 +118,17 @@
 
             <!-- The orks -->
             <a-entity position="0 0.6 0.83815" id="orks"></a-entity>
-            <a-entity position="0 0.6 0.83815" id="chests"></a-entity>+
-            <a-entity position="0 0.6 0.83815" id="mages"></a-entity>
+            <a-entity position="0 0.6 0.83815" id="chests"></a-entity>
+            <a-entity position="-0.49 0.9 1.4" id="mages"></a-entity>
+            <!--<a-entity position="0 1.2 0.83815" id="mages"></a-entity> -->
 
-            <a-entity 
-                id="music"
-                position="0 0 0"
-                sound="src: url(./assets/sounds/around_the_fire.mp3); autoplay: true, loop: true"
-            ></a-entity>
-        </a-scene>
-    </body>
+          <a-entity
+              id="music"
+              position="0 0 0"
+              sound="src: url(./assets/sounds/around_the_fire.mp3); autoplay: true, loop: true"
+          ></a-entity>
+      </a-scene>
+  </body>
 
 
 </div>

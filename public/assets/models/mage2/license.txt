@@ -1,0 +1,11 @@
+Model Information:
+* title:	mage fox
+* source:	https://sketchfab.com/3d-models/mage-fox-8aea7197531b4ac3845a78f48a24d13b
+* author:	kowy (https://sketchfab.com/ganim3ds)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "mage fox" (https://sketchfab.com/3d-models/mage-fox-8aea7197531b4ac3845a78f48a24d13b) by kowy (https://sketchfab.com/ganim3ds) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
