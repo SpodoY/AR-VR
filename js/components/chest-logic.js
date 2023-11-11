@@ -13,7 +13,12 @@ AFRAME.registerComponent('chest-logic', {
         // Access the shared entity
         this.sharedEntity = document.getElementById('shared-entity');
         this.currentPositionIndex = this.sharedEntity.getAttribute('data-current-position-index');
-        console.log(this.currentPositionIndex + "CHEST")
+
+
+        this.myArray = JSON.parse(this.sharedEntity.getAttribute('data-my-array'));
+        console.log(this.myArray);
+
+
 
         this.el.addEventListener(
             "switch",
@@ -123,27 +128,27 @@ AFRAME.registerComponent('chest-logic', {
                 var pos;
 
                 //console.log(this.currentPositionIndex + "CHESSSST")
-                if (this.currentPositionIndex % 12 === 0) {
+                if (this.currentPositionIndex % 12 === this.myArray[0]) {
                     pos = createPostion(2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 2) {
+                if (this.currentPositionIndex % 12 === this.myArray[1]) {
                     pos = createPostion(-2.2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 4) {
+                if (this.currentPositionIndex % 12 === this.myArray[2]) {
                     pos = createPostion(0, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 6) {
+                if (this.currentPositionIndex % 12 === this.myArray[3]) {
                     pos = createPostion(2, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 8) {
+                if (this.currentPositionIndex % 12 === this.myArray[4]) {
                     pos = createPostion(0, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 10) {
+                if (this.currentPositionIndex % 12 === this.myArray[5]) {
                     pos = createPostion(-2.2, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
@@ -159,27 +164,27 @@ AFRAME.registerComponent('chest-logic', {
 
                 console.log(this.currentPositionIndex + "CHEST")
 
-                if (this.currentPositionIndex % 12 === 0) {
+                if (this.currentPositionIndex % 12 === this.myArray[0]) {
                     pos = createPostion(2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 2) {
+                if (this.currentPositionIndex % 12 === this.myArray[1]) {
                     pos = createPostion(-2.2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 4) {
+                if (this.currentPositionIndex % 12 === this.myArray[2]) {
                     pos = createPostion(0, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 6) {
+                if (this.currentPositionIndex % 12 === this.myArray[3]) {
                     pos = createPostion(2, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 8) {
+                if (this.currentPositionIndex % 12 === this.myArray[4]) {
                     pos = createPostion(0, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 10) {
+                if (this.currentPositionIndex % 12 === this.myArray[5]) {
                     pos = createPostion(-2.2, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }

@@ -14,6 +14,8 @@ AFRAME.registerComponent('ork-logic', {
         this.sharedEntity = document.getElementById('shared-entity');
         this.currentPositionIndex = this.sharedEntity.getAttribute('data-current-position-index');
 
+        this.myArray = JSON.parse(this.sharedEntity.getAttribute('data-my-array'));
+
 
         var orkId = this.el.components['ork-logic'].data.id; // Access the ID of the ork
         //console.log("ID: " + orkId);
@@ -105,30 +107,29 @@ AFRAME.registerComponent('ork-logic', {
             if (this.time >= Math.floor(Math.random() * (1200 - 800 + 1)) + 800) {
                 this.el.emit("switch")
                 var pos;
-                console.log(this.currentPositionIndex + "ORK")
 
 
-                if (this.currentPositionIndex % 12 === 0) {
+                if (this.currentPositionIndex % 12 === this.myArray[0]) {
                     pos = createPostion(2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 2) {
+                if (this.currentPositionIndex % 12 === this.myArray[1]) {
                     pos = createPostion(-2.2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 4) {
+                if (this.currentPositionIndex % 12 === this.myArray[2]) {
                     pos = createPostion(0, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 6) {
+                if (this.currentPositionIndex % 12 === this.myArray[3]) {
                     pos = createPostion(2, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 8) {
+                if (this.currentPositionIndex % 12 === this.myArray[4]) {
                     pos = createPostion(0, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 10) {
+                if (this.currentPositionIndex % 12 === this.myArray[5]) {
                     pos = createPostion(-2.2, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
@@ -141,27 +142,27 @@ AFRAME.registerComponent('ork-logic', {
                 this.el.emit("switch")
                 var pos;
                 // console.log(this.currentPositionIndex + "MAGEEEEEE")
-                if (this.currentPositionIndex % 12 === 0) {
+                if (this.currentPositionIndex % 12 === this.myArray[0]) {
                     pos = createPostion(2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 2) {
+                if (this.currentPositionIndex % 12 === this.myArray[1]) {
                     pos = createPostion(-2.2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 4) {
+                if (this.currentPositionIndex % 12 === this.myArray[2]) {
                     pos = createPostion(0, -0.2, 1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 6) {
+                if (this.currentPositionIndex % 12 === this.myArray[3]) {
                     pos = createPostion(2, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 8) {
+                if (this.currentPositionIndex % 12 === this.myArray[4]) {
                     pos = createPostion(0, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }
-                if (this.currentPositionIndex % 12 === 10) {
+                if (this.currentPositionIndex % 12 === this.myArray[5]) {
                     pos = createPostion(-2.2, -0.2, -1.2)
                     this.el.setAttribute("position", pos)
                 }

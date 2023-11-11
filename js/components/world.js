@@ -19,6 +19,14 @@ AFRAME.registerComponent('world', {
 
         this.currentPositionIndex = Math.floor(Math.random() * (200 - 12 + 1)) + 12;
 
+        //array for different position logic -- not working
+        this.myArray = [0, 2, 4, 6, 8, 10]
+        for (let i =  this.myArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [ this.myArray[i],  this.myArray[j]] = [ this.myArray[j],  this.myArray[i]];
+        }
+        console.log(this.myArray);
+
 
 
 
@@ -26,6 +34,7 @@ AFRAME.registerComponent('world', {
         this.sharedEntity = document.createElement('a-entity');
         this.sharedEntity.setAttribute('id', 'shared-entity');
         this.sharedEntity.setAttribute('data-current-position-index', this.currentPositionIndex);
+        this.sharedEntity.setAttribute('data-my-array', JSON.stringify(this.myArray)); // Convert array to string
         this.el.sceneEl.appendChild(this.sharedEntity);
 
         //console.log(  this.currentPositionIndex + "WORLD")
@@ -190,12 +199,18 @@ AFRAME.registerComponent('world', {
 
             this.time += timeDelta;
 
-            //here will the new spanning after all 6 were hit start
+            //here will the new spanning after all 4 were hit start
             if(this.time >= 1000){
                 const result = this.generateRandomPosition(6);
                 this.spawn_orks(result[2], result[3],result[4],result[5])
                 this.spawn_chests(result[0])
                 this.spawn_mages(result[1])
+
+                for (let i =  this.myArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [ this.myArray[i],  this.myArray[j]] = [ this.myArray[j],  this.myArray[i]];
+                }
+                console.log(this.myArray + "NEW")
             }
         }
 
