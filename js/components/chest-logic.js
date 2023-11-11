@@ -46,8 +46,8 @@ AFRAME.registerComponent('chest-logic', {
         }.bind(this)
 
 
-            this.el.addEventListener( "mousedown", hammerhit)
-        this.el.addEventListener( "click", hammerhit)
+        this.el.addEventListener( "mousedown", hammerhit)
+        //this.el.addEventListener( "click", hammerhit) -> just hover over and it is hitting
 
         this.el.addEventListener( "candie", function () {
             this.can_die = true

@@ -148,10 +148,9 @@ AFRAME.registerComponent('world', {
         }
 
 
-        // var orks = document.querySelectorAll('.ork')
         var orks = document.querySelectorAll('.ork')
-        var chests = document.querySelectorAll('.chest') //!!!!!!!!!!!!!
-        var mages = document.querySelectorAll('.mage') //!!!!!!!!!!!!!
+        var chests = document.querySelectorAll('.chest')
+        var mages = document.querySelectorAll('.mage')
 
         if(orks.length <= 0 && timer_ongoing){
 
