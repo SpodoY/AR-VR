@@ -1,3 +1,5 @@
+import {createPostion} from "../holes";
+
 AFRAME.registerComponent('chest-logic', {
     schema: {
 
@@ -5,8 +7,14 @@ AFRAME.registerComponent('chest-logic', {
 
     init: function () {
         this.time = 0;
-        this.randomInterval = Math.floor(Math.random() * Math.floor(300))  + 1000
+        //this.randomInterval = Math.floor(Math.random() * Math.floor(300))  + 1000
+        this.randomInterval = 1040;
         this.can_die = true;
+
+        // Access the shared entity
+        this.sharedEntity = document.getElementById('shared-entity');
+        this.currentPositionIndex = this.sharedEntity.getAttribute('data-current-position-index');
+        console.log(  this.currentPositionIndex + "CHEST")
 
         this.el.addEventListener(
             "switch",
@@ -113,6 +121,42 @@ AFRAME.registerComponent('chest-logic', {
         //if the time is over our random time spawn
         if(this.time >= this.randomInterval){
             this.el.emit("switch")
+            var pos;
+
+            //console.log(this.currentPositionIndex + "CHESSSST")
+            if(this.currentPositionIndex%12===0)
+            {
+                pos = createPostion(2, -0.2, 1.2)
+                this.el.setAttribute("position", pos)
+            }
+            if(this.currentPositionIndex%12===2)
+            {
+                pos = createPostion(-2.2, -0.2, 1.2)
+                this.el.setAttribute("position", pos)
+            }
+            if(this.currentPositionIndex%12===4)
+            {
+                pos =  createPostion(0, -0.2, 1.2)
+                this.el.setAttribute("position", pos)
+            }
+            if(this.currentPositionIndex%12===6)
+            {
+                pos = createPostion(2, -0.2,-1.2)
+                this.el.setAttribute("position", pos)
+            }
+            if(this.currentPositionIndex%12===8)
+            {
+                pos = createPostion(0, -0.2, -1.2)
+                this.el.setAttribute("position", pos)
+            }
+            if(this.currentPositionIndex%12===10)
+            {
+                pos =  createPostion(-2.2, -0.2, -1.2)
+                this.el.setAttribute("position", pos)
+            }
+
+
+            this.currentPositionIndex++;
             this.time =0
         }
 

@@ -16,6 +16,20 @@ AFRAME.registerComponent('world', {
     },
 
     init: function () {
+
+        this.currentPositionIndex = 212; // Initialize the value -- minimum of 12
+
+
+
+        // Store the value in a shared A-Frame entity
+        this.sharedEntity = document.createElement('a-entity');
+        this.sharedEntity.setAttribute('id', 'shared-entity');
+        this.sharedEntity.setAttribute('data-current-position-index', this.currentPositionIndex);
+        this.el.sceneEl.appendChild(this.sharedEntity);
+
+        //console.log(  this.currentPositionIndex + "WORLD")
+
+
         this.time = 0
         var worldComponent = this; // Store a reference to the world component
         this.chestCollectedFlag = false; // Flag to check if the chest has been collected
@@ -53,12 +67,14 @@ AFRAME.registerComponent('world', {
     spawn_orks : function (number1, number2, number3, number4) {
 
         var orks = document.getElementById('orks')
+        var id=0;
 
 
         // spawns the orks
         holePositions.forEach(function(pos, index){
             if (index === number1 || index % 6 === number2 || index % 6 === number3|| index % 6 === number4) {
-                var ork = create_ork(pos) //6
+                var orkId = 'ork_' + id++;
+                var ork = create_ork(pos, orkId) //6
                 orks.appendChild(ork)
             }
         })
@@ -133,8 +149,6 @@ AFRAME.registerComponent('world', {
         if(timer_ongoing){
             if(Math.ceil(update_gametime / 1000 >= 0)){
                 if (this.chestCollectedFlag) {
-                    console.log(update_gametime)
-                    console.log((update_gametime + 5.0 * 1000 ))
                     this.el.setAttribute("world", "gametime", (update_gametime + 5.0 * 1000 )) //CHEST BOOST
                     this.chestCollectedFlag = false;
                 }

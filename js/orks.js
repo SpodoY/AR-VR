@@ -1,5 +1,5 @@
 
-export const create_ork = function (positiom) {
+export const create_ork = function (positiom,id) {
 
     const orcScale = "0.0075 " //scale for case and ork
     // const orcScale = "0.8 " for mage -> issues when clicking (actually you have to hit arm)
@@ -10,7 +10,9 @@ export const create_ork = function (positiom) {
 
     ork.setAttribute("mixin", "ork")
     ork.setAttribute("position", positiom)
+    ork.setAttribute('id', id);
     ork.setAttribute("scale", orcScale.repeat(3))
+    ork.setAttribute('ork-logic', { id: id }); // Pass the ID as a component property
 
     ork.classList.add("ork")
 
