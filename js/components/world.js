@@ -17,7 +17,8 @@ AFRAME.registerComponent('world', {
 
     init: function () {
 
-        this.currentPositionIndex = 212; // Initialize the value -- minimum of 12
+        this.currentPositionIndex = Math.floor(Math.random() * (200 - 12 + 1)) + 12;
+
 
 
 

@@ -101,7 +101,8 @@ AFRAME.registerComponent('mage-logic', {
             if (this.time >= Math.floor(Math.random() * (1200 - 800 + 1)) + 800) {
                 this.el.emit("switch")
                 var pos;
-                // console.log(this.currentPositionIndex + "MAGEEEEEE")
+                console.log(this.currentPositionIndex + "MAGE")
+
                 if (this.currentPositionIndex % 12 === 0) {
                     pos = createPostion(2, -0.2, 1.2)
                     this.el.setAttribute("position", pos)

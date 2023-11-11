@@ -16,17 +16,39 @@ AFRAME.registerComponent('ork-logic', {
 
 
         var orkId = this.el.components['ork-logic'].data.id; // Access the ID of the ork
-        console.log("ID: " + orkId);
+        //console.log("ID: " + orkId);
 
         if (orkId === "ork_0") {
-            this.currentPositionIndex = this.currentPositionIndex + 2;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
 
         } else if (orkId === "ork_1") {
-            this.currentPositionIndex = this.currentPositionIndex + 6;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
         } else if (orkId === "ork_2") {
-            this.currentPositionIndex = this.currentPositionIndex + 8;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
         } else if (orkId === "ork_3") {
-            this.currentPositionIndex = this.currentPositionIndex + 10;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
+            this.currentPositionIndex++;
         }
 
         this.el.addEventListener(
@@ -83,6 +105,7 @@ AFRAME.registerComponent('ork-logic', {
             if (this.time >= Math.floor(Math.random() * (1200 - 800 + 1)) + 800) {
                 this.el.emit("switch")
                 var pos;
+                console.log(this.currentPositionIndex + "ORK")
 
 
                 if (this.currentPositionIndex % 12 === 0) {
