@@ -19,15 +19,25 @@ AFRAME.registerComponent('chest-logic', {
         var hammerhit = function (){
             let chests = document.getElementById('chests')
 
-            if(this.can_die === true){
+            if(this.can_die === true) {
                 chests.removeChild(this.el)
 
-                //AFRAME.scenes[0].emit('increaseScore', {points : 1}) //instead logic for SPECIAL EFFECTS --> HERE TEXT IF WE WANT CHEST SCORE SMTH
-               this.show_chestpopup(); // -> ACTION
-               this.el.sceneEl.emit('chestCollected'); // Emit a custom event
-                setTimeout(() => {
-                    this.hide_chestpopup();
-                }, 1500);
+                let randomInteger = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+
+                //SCORE BOOST
+                if (randomInteger < 3) {
+                    this.show_chestpopup2(); // -> ACTION
+                    AFRAME.scenes[0].emit('increaseScore', {points: 3})
+                    setTimeout(() => {
+                        this.hide_chestpopup2();
+                    }, 1500);
+                } else {
+                    this.show_chestpopup(); // -> ACTION
+                    this.el.sceneEl.emit('chestCollected'); // Emit a custom event
+                    setTimeout(() => {
+                        this.hide_chestpopup();
+                    }, 1500);
+                }
             }
 
             let hammer = document.getElementById('player-hammer')
@@ -67,8 +77,27 @@ AFRAME.registerComponent('chest-logic', {
 
     }.bind(this),
 
+    show_chestpopup2 : function ( ) {
+        let wintetx = document.getElementById("chest-text2")
+        let visible = wintetx.getAttribute("visible")
+
+        if(!visible) {
+            wintetx.setAttribute("visible", true)
+        }
+
+    }.bind(this),
+
     hide_chestpopup: function ( ) {
         let wintetx = document.getElementById("chest-text")
+        let visible = wintetx.getAttribute("visible")
+
+        if(visible) {
+            wintetx.setAttribute("visible", false)
+        }
+    }.bind(this),
+
+    hide_chestpopup2: function ( ) {
+        let wintetx = document.getElementById("chest-text2")
         let visible = wintetx.getAttribute("visible")
 
         if(visible) {

@@ -45,6 +45,7 @@ AFRAME.registerComponent('world', {
         this.spawn_chests(result[0])
         this.spawn_mages(result[1])
         this.hide_chestpopup()
+        this.hide_chestpopup2()
         this.hide_magepopup()
 
     },
@@ -131,11 +132,15 @@ AFRAME.registerComponent('world', {
 
         if(timer_ongoing){
             if(Math.ceil(update_gametime / 1000 >= 0)){
-                this.el.setAttribute("world", "gametime", update_gametime)
                 if (this.chestCollectedFlag) {
-
-                    this.el.setAttribute("world", "gametime", update_gametime +5.0 * 1000 ) //CHEST BOOST
+                    console.log(update_gametime)
+                    console.log((update_gametime + 5.0 * 1000 ))
+                    this.el.setAttribute("world", "gametime", (update_gametime + 5.0 * 1000 )) //CHEST BOOST
                     this.chestCollectedFlag = false;
+                }
+                else
+                {
+                    this.el.setAttribute("world", "gametime", update_gametime)
                 }
             }else{
                 this.el.setAttribute("world", "timer_ongoing" ,false)
@@ -250,6 +255,15 @@ AFRAME.registerComponent('world', {
 
     hide_chestpopup: function ( ) {
         let wintetx = document.getElementById("chest-text")
+        let visible = wintetx.getAttribute("visible")
+
+        if(visible) {
+            wintetx.setAttribute("visible", false)
+        }
+    }.bind(this),
+
+    hide_chestpopup2: function ( ) {
+        let wintetx = document.getElementById("chest-text2")
         let visible = wintetx.getAttribute("visible")
 
         if(visible) {
