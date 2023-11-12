@@ -39,7 +39,7 @@ AFRAME.registerComponent('mage-logic', {
             if(this.can_die === true){
                 chests.removeChild(this.el)
 
-                AFRAME.scenes[0].emit('decreaseScore', {points : 1})
+                AFRAME.scenes[0].emit('decreaseScore', {points : 10}  )
                 this.show_magepopup(); // -> ACTION BAD
                 setTimeout(() => {
                     this.hide_magepopup();
