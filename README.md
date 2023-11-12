@@ -20,7 +20,9 @@ With this the server starts on localhost:8080
 
 ## How to play
 
-The objective of this game is to kill as many ork's as possible.
-    - you kill them by moving your mouse over them and pressing the left mouse button
-But take care whn hitting a mage you lose 10 points
+The objective of this game is to kill as many ork's as possible. <br>
+ - you kill them by moving your mouse over them and pressing the left mouse button
+
+But take care when hitting a mage you lose 10 points
+
 If you manage to hit a chest you will receive a time or score boost. 
